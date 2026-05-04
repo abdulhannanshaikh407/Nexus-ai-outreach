@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(pip list *)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(pip install *)",
+      "Bash(pytest *)",
+      "Bash(echo \"Status exit code: $?\")",
+      "Bash(docker build *)",
+      "Bash(python3 *)",
+      "Bash(findstr /C:\"port=8000\" server.py)",
+      "Bash(start \"ColdEmail API\" cmd /c \"uvicorn server:app --port 4000 --reload\")",
+      "Bash(curl -s http://localhost:4000/)",
+      "Bash(curl *)",
+      "Bash(netstat -ano)",
+      "Bash(git reset *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Integrate Stitch UI + FastAPI backend with port 4000 *)",
+      "Bash(git push *)",
+      "Bash(git pull *)"
+    ]
+  }
+}

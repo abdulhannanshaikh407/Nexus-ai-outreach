@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Activity - OutreachAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#303038",
+                        "inverse-surface": "#e4e1ed",
+                        "secondary-fixed-dim": "#4ae176",
+                        "secondary-fixed": "#6bff8f",
+                        "on-surface-variant": "#c7c4d7",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#34343d",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-high": "#292932",
+                        "on-error": "#690005",
+                        "primary-container": "#8083ff",
+                        "surface-container-low": "#1b1b23",
+                        "on-tertiary-fixed": "#301400",
+                        "inverse-primary": "#494bd6",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "outline-variant": "#464554",
+                        "on-tertiary": "#4f2500",
+                        "on-secondary-fixed": "#002109",
+                        "surface-bright": "#393841",
+                        "on-surface": "#e4e1ed",
+                        "on-primary": "#1000a9",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "tertiary-container": "#d97721",
+                        "background": "#13131b",
+                        "secondary": "#4ae176",
+                        "surface": "#13131b",
+                        "primary": "#c0c1ff",
+                        "surface-container-lowest": "#0d0d15",
+                        "surface-container": "#1f1f27",
+                        "on-primary-container": "#0d0096",
+                        "on-secondary-fixed-variant": "#005321",
+                        "on-secondary-container": "#004119",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#00b954",
+                        "surface-container-highest": "#34343d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-primary-fixed": "#07006c",
+                        "tertiary": "#ffb783",
+                        "outline": "#908fa0",
+                        "surface-dim": "#13131b",
+                        "surface-tint": "#c0c1ff",
+                        "on-secondary": "#003915",
+                        "on-background": "#e4e1ed",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-tertiary-container": "#452000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "xl": "2rem",
+                        "lg": "1.5rem",
+                        "md": "1rem",
+                        "base": "4px",
+                        "sm": "0.5rem",
+                        "xs": "0.25rem",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-stats": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["18px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "mono-stats": ["20px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-[#0f0f1a] text-on-surface font-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-6 fixed left-0 top-0 w-64 border-r bg-[#1a1a2e] border-[#2e2e48] z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-[#6366f1] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm fill-icon" data-icon="hub">hub</span>
+</div>
+<div>
+<div class="text-xl font-black text-white tracking-tighter">OutreachAI</div>
+<div class="font-label-caps text-[9px] text-slate-400">Growth Engine</div>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-sm font-medium">Leads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+<span class="font-body-md text-sm font-medium">Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#6366f1]/10 text-[#6366f1] border-r-2 border-[#6366f1] transition-colors duration-150 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-body-md text-sm font-medium">Memory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-sm font-medium">Settings</span>
+</a>
+</div>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full py-2 px-4 rounded-lg bg-[#6366f1] text-white font-body-sm font-medium hover:bg-opacity-90 transition-colors">Upgrade Plan</button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="menu_book">menu_book</span>
+<span class="font-body-sm text-xs font-medium">Docs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#2e2e48] transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span>
+<span class="font-body-sm text-xs font-medium">Support</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-6 w-full max-w-[calc(100%)] bg-[#0f0f1a] docked full-width top-0 z-40 border-b border-[#2e2e48] shadow-none sticky">
+<div class="flex items-center text-lg font-bold text-white tracking-tight font-['Inter'] antialiased">
+<span class="md:hidden mr-4 material-symbols-outlined">menu</span>
+                System Activity
+            </div>
+<div class="flex-1 max-w-md mx-6 hidden md:block">
+<div class="relative w-full h-9 bg-[#1a1a2e] rounded-lg border border-[#2e2e48] flex items-center px-3 focus-within:border-[#6366f1] transition-colors">
+<span class="material-symbols-outlined text-slate-400 text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none text-body-sm text-white w-full placeholder-slate-500" placeholder="Search logs, agents..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:bg-[#1a1a2e] hover:text-white p-2 rounded-lg transition-all duration-200 active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-400 hover:bg-[#1a1a2e] hover:text-white p-2 rounded-lg transition-all duration-200 active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button class="hidden md:flex px-4 py-1.5 bg-[#6366f1] text-white rounded-lg font-body-sm font-medium hover:bg-opacity-90 active:scale-95 transition-all items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    New Campaign
+                </button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-[#2e2e48]">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9CA00rgeINBdv155oD4L6hhgqoX0Pou_QelTyDx98R4cZ0tRIeEfNCPsIRMRpbpxqkZ72yV8vpanfTIsM4HarKDI8vXg6xt1aXLX-KIFarF6boH6OS4bnMfmS7KVriDMSE23IvaQLstoxagoVrYPJ-O3geQVgC1So_hzJ7jQrozl-Ks_W9Rek3V6JGkU6ukDUERZgzg3arSGFjNH7WK9laxnNJsLK54pMSjw8u3kXjAVyM5ahdkFKk-3bJhR_MShBsF-6cYthJBg"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<main class="flex-1 p-gutter overflow-y-auto w-full max-w-container-max mx-auto">
+<!-- Pulse Header -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden group hover:border-[#3f3f5a] transition-colors">
+<div class="flex justify-between items-start z-10">
+<span class="font-label-caps text-slate-400 uppercase tracking-wider">Total Active Agents</span>
+<span class="material-symbols-outlined text-[#6366f1] text-sm">precision_manufacturing</span>
+</div>
+<div class="flex items-baseline gap-2 z-10">
+<span class="font-mono-stats text-4xl text-white">12</span>
+<span class="font-body-sm text-secondary-fixed">+2 from yesterday</span>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-[#6366f1] opacity-5 rounded-full blur-xl group-hover:opacity-10 transition-opacity"></div>
+</div>
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden hover:border-[#3f3f5a] transition-colors">
+<div class="flex justify-between items-start z-10">
+<span class="font-label-caps text-slate-400 uppercase tracking-wider">Tasks Processed (24h)</span>
+<span class="material-symbols-outlined text-[#6366f1] text-sm">checklist</span>
+</div>
+<div class="flex items-baseline gap-2 z-10">
+<span class="font-mono-stats text-4xl text-white">4,892</span>
+<span class="font-body-sm text-slate-400">~204/hr</span>
+</div>
+</div>
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden hover:border-[#3f3f5a] transition-colors">
+<div class="flex justify-between items-start z-10">
+<span class="font-label-caps text-slate-400 uppercase tracking-wider">System Health</span>
+<div class="flex items-center gap-1 bg-secondary/10 px-2 py-0.5 rounded text-secondary font-label-caps text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                            ONLINE
+                        </div>
+</div>
+<div class="flex items-baseline gap-2 z-10">
+<span class="font-mono-stats text-4xl text-white">99.9%</span>
+<span class="font-body-sm text-slate-400">Uptime</span>
+</div>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Center Column: Agents & Activity (Col span 2) -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Agent Grid -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl overflow-hidden">
+<div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50">
+<h2 class="font-label-caps text-slate-300 uppercase">Agent Roster</h2>
+<button class="text-xs font-body-sm text-[#6366f1] hover:text-white transition-colors">View All Threads</button>
+</div>
+<div class="p-md grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Agent Card 1 -->
+<div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 hover:border-[#6366f1]/50 transition-colors cursor-default">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary-container/20 border border-primary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary-container">memory</span>
+</div>
+<div>
+<div class="font-body-sm font-semibold text-white leading-tight">Agent Alpha</div>
+<div class="font-label-caps text-[9px] text-slate-500">ID: AG-001</div>
+</div>
+</div>
+<div class="bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-caps text-[10px] px-1.5 py-0.5 rounded flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary-container animate-pulse"></span>
+                                        Researching
+                                    </div>
+</div>
+<div class="font-body-sm text-slate-400 text-xs mb-3 truncate">
+                                    Target: Enterprise SaaS Leads (Q3)
+                                </div>
+<div class="flex items-end justify-between gap-4">
+<div class="flex-1">
+<div class="flex justify-between text-[10px] text-slate-500 mb-1">
+<span>CPU Load</span>
+<span>78%</span>
+</div>
+<div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+<div class="bg-[#6366f1] h-full w-[78%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Agent Card 2 -->
+<div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 hover:border-[#6366f1]/50 transition-colors cursor-default">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-secondary/10 border border-secondary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-secondary">edit_document</span>
+</div>
+<div>
+<div class="font-body-sm font-semibold text-white leading-tight">Agent Beta</div>
+<div class="font-label-caps text-[9px] text-slate-500">ID: AG-009</div>
+</div>
+</div>
+<div class="bg-secondary/10 border border-secondary/20 text-secondary font-label-caps text-[10px] px-1.5 py-0.5 rounded flex items-center gap-1">
+                                        Drafting
+                                    </div>
+</div>
+<div class="font-body-sm text-slate-400 text-xs mb-3 truncate">
+                                    Personalizing intro for Acme Corp
+                                </div>
+<div class="flex items-end justify-between gap-4">
+<div class="flex-1">
+<div class="flex justify-between text-[10px] text-slate-500 mb-1">
+<span>CPU Load</span>
+<span>42%</span>
+</div>
+<div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[42%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visualizer -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl overflow-hidden flex-1 min-h-[300px] flex flex-col">
+<div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50">
+<h2 class="font-label-caps text-slate-300 uppercase">Parallel Pipeline Flow</h2>
+</div>
+<div class="p-md flex-1 relative flex items-center justify-center text-slate-500 font-body-sm border-2 border-dashed border-[#2e2e48] rounded-lg m-4">
+                           [Parallel Processing Network Graph Placeholder]
+                        </div>
+</div>
+</div>
+<!-- Right Column: Feed & Metrics -->
+<div class="flex flex-col gap-gutter">
+<!-- Live Feed -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col h-[400px]">
+<div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50 shrink-0">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#6366f1] animate-pulse"></span>
+<h2 class="font-label-caps text-slate-300 uppercase">Live Log</h2>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm">filter_list</span>
+</div>
+<div class="flex-1 p-3 overflow-y-auto font-mono text-[11px] leading-relaxed text-slate-400 space-y-2 bg-[#0f0f1a] m-2 rounded border border-[#2e2e48]">
+<div class="flex gap-2">
+<span class="text-slate-600 shrink-0">[10:42:01]</span>
+<span class="text-[#6366f1]">Agent-04</span>
+<span class="text-slate-300">completed research for David Chen (Stripe)</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600 shrink-0">[10:42:05]</span>
+<span class="text-secondary">Agent-09</span>
+<span class="text-slate-300">writing personalized intro for Acme Corp. Confidence: 92%</span>
+</div>
+<div class="flex gap-2">
+<span class="text-slate-600 shrink-0">[10:42:12]</span>
+<span class="text-tertiary">Agent-02</span>
+<span class="text-slate-300">analyzing sentiment for Reply #402. Detected: 'Interested'</span>
+</div>
+<div class="flex gap-2 opacity-70">
+<span class="text-slate-600 shrink-0">[10:41:50]</span>
+<span class="text-[#6366f1]">Agent-01</span>
+<span class="text-slate-300">queued 50 new LinkedIn profiles for scraping.</span>
+</div>
+<div class="flex gap-2 opacity-50">
+<span class="text-slate-600 shrink-0">[10:41:15]</span>
+<span class="text-error">System</span>
+<span class="text-slate-300">API rate limit warning (Provider A). Backing off 2000ms.</span>
+</div>
+</div>
+</div>
+<!-- Metrics Sidebar -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col gap-4">
+<h2 class="font-label-caps text-slate-300 uppercase mb-2">Resource Utilization</h2>
+<div>
+<div class="flex justify-between font-label-caps text-[10px] text-slate-400 mb-1">
+<span>API Requests (Daily)</span>
+<span>8.2k / 10k</span>
+</div>
+<div class="w-full bg-[#0f0f1a] border border-[#2e2e48] h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[82%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-[10px] text-slate-400 mb-1">
+<span>Memory Load</span>
+<span>64%</span>
+</div>
+<div class="w-full bg-[#0f0f1a] border border-[#2e2e48] h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[64%] rounded-full"></div>
+</div>
+</div>
+<div class="pt-2 border-t border-[#2e2e48]">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-slate-300">Pending Queue</span>
+<span class="font-mono-stats text-lg text-white">142</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

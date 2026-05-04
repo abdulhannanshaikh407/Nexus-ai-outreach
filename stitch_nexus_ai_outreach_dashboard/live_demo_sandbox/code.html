@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OutreachAI - Live Demo &amp; Sandbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#c0c1ff",
+                        "surface-container-lowest": "#0d0d15",
+                        "inverse-surface": "#e4e1ed",
+                        "primary-fixed": "#e1e0ff",
+                        "on-background": "#e4e1ed",
+                        "inverse-on-surface": "#303038",
+                        "surface-variant": "#34343d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "secondary-fixed": "#6bff8f",
+                        "outline": "#908fa0",
+                        "on-secondary": "#003915",
+                        "on-tertiary-container": "#452000",
+                        "surface-container-high": "#292932",
+                        "surface-container-low": "#1b1b23",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-container-highest": "#34343d",
+                        "on-tertiary-fixed": "#301400",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb783",
+                        "tertiary-fixed": "#ffdcc5",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "on-primary-container": "#0d0096",
+                        "secondary-fixed-dim": "#4ae176",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#002109",
+                        "secondary-container": "#00b954",
+                        "primary": "#c0c1ff",
+                        "on-surface": "#e4e1ed",
+                        "error": "#ffb4ab",
+                        "primary-container": "#8083ff",
+                        "surface-container": "#1f1f27",
+                        "secondary": "#4ae176",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary": "#1000a9",
+                        "on-secondary-container": "#004119",
+                        "inverse-primary": "#494bd6",
+                        "outline-variant": "#464554",
+                        "on-tertiary": "#4f2500",
+                        "on-error": "#690005",
+                        "surface": "#13131b",
+                        "surface-bright": "#393841",
+                        "on-secondary-fixed-variant": "#005321",
+                        "tertiary-container": "#d97721",
+                        "background": "#13131b",
+                        "surface-dim": "#13131b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "0.25rem",
+                        "md": "1rem",
+                        "xl": "2rem",
+                        "gutter": "1.5rem",
+                        "base": "4px",
+                        "sm": "0.5rem",
+                        "lg": "1.5rem",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-stats": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "mono-stats": ["20px", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "h3": ["18px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pipeline-scroll::-webkit-scrollbar { height: 4px; }
+        .pipeline-scroll::-webkit-scrollbar-track { background: #13131b; }
+        .pipeline-scroll::-webkit-scrollbar-thumb { background: #34343d; border-radius: 4px; }
+        .terminal-scroll::-webkit-scrollbar { width: 4px; }
+        .terminal-scroll::-webkit-scrollbar-track { background: #13131b; }
+        .terminal-scroll::-webkit-scrollbar-thumb { background: #34343d; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="bg-[#0f0f1a] text-[#6366f1] font-['Inter'] antialiased tracking-tight fixed left-0 top-0 h-full w-64 border-r border-[#2e2e48] flat no shadows flex flex-col h-screen py-6 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                O
+            </div>
+<div>
+<div class="text-lg font-bold tracking-tighter text-white">OutreachAI</div>
+<div class="text-[10px] text-gray-500 uppercase tracking-widest mt-0.5">v2.4.1-enterprise</div>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-[#6366f1] text-white rounded-md py-2 px-4 font-medium text-sm flex items-center justify-center gap-2 hover:bg-indigo-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Campaign
+            </button>
+</div>
+<div class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="text-sm font-medium">Pulse</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">dynamic_feed</span>
+<span class="text-sm font-medium">Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md bg-[#1a1a2e] text-[#6366f1] border-r-2 border-[#6366f1] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">science</span>
+<span class="text-sm font-medium">Sandbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-sm font-medium">Agents</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+<div class="px-3 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:text-white transition-colors hover:bg-[#1a1a2e] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">key</span>
+<span class="text-sm font-medium">API Keys</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-[#0f0f1a]/80 backdrop-blur-md text-[#6366f1] font-['Inter'] text-sm font-medium sticky top-0 z-40 w-full border-b border-[#2e2e48] flat no shadows flex items-center justify-between px-8 h-16 ml-0">
+<div class="flex items-center gap-8">
+<div class="text-on-background font-h3 text-h3">Live Demo Environment</div>
+<div class="hidden md:flex items-center gap-6 border-l border-surface-variant pl-8">
+<div class="relative group cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]">search</span>
+<input class="bg-[#1a1a2e] border border-[#2e2e48] rounded-md pl-9 pr-4 py-1.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#6366f1] w-64" placeholder="Search logs, agents..." type="text"/>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Analytics</a>
+<a class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Workflows</a>
+<a class="text-[#6366f1] font-semibold cursor-pointer active:scale-95 transition-transform" href="#">Logs</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-3 py-1.5 rounded-md border border-[#2e2e48] text-gray-300 hover:border-[#3f3f5a] hover:text-white transition-colors text-sm font-medium cursor-pointer active:scale-95 transition-transform">
+                    Export Data
+                </button>
+<button class="px-3 py-1.5 rounded-md bg-[#6366f1] text-white hover:bg-indigo-600 transition-colors text-sm font-medium cursor-pointer active:scale-95 transition-transform shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                    Deploy Sandbox
+                </button>
+<div class="flex items-center gap-3 border-l border-surface-variant pl-4 ml-2">
+<button class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-gutter max-w-container-max mx-auto w-full flex flex-col gap-gutter">
+<!-- Top Row: System Heartbeat -->
+<section class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-6 relative overflow-hidden group hover:border-[#3f3f5a] transition-colors">
+<div class="absolute inset-0 bg-gradient-to-b from-[#6366f1]/5 to-transparent pointer-events-none"></div>
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface flex items-center gap-2">
+                            System Heartbeat
+                            <span class="flex h-2 w-2 relative ml-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Real-time throughput and global agent capacity.</p>
+</div>
+<div class="flex items-center gap-2 bg-[#0f0f1a] p-1 rounded-lg border border-[#2e2e48]">
+<button class="px-3 py-1 rounded text-xs font-medium bg-[#2e2e48] text-white flex items-center gap-1 hover:bg-[#3f3f5a] transition-colors">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span> Start
+                        </button>
+<button class="px-3 py-1 rounded text-xs font-medium text-gray-400 hover:text-white hover:bg-[#2e2e48] transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pause</span> Pause
+                        </button>
+<button class="px-3 py-1 rounded text-xs font-medium text-gray-400 hover:text-white hover:bg-[#2e2e48] transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span> Reset
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-6 relative z-10">
+<div class="col-span-1 flex flex-col justify-between space-y-4 border-r border-surface-variant pr-6">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Requests / Sec</div>
+<div class="font-mono-stats text-[32px] font-semibold text-white tracking-tighter">1,204<span class="text-sm text-secondary ml-2 font-body-sm align-middle">+12%</span></div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Active Agents</div>
+<div class="font-mono-stats text-[24px] font-semibold text-primary tracking-tighter">48 / 50</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1">Success Rate</div>
+<div class="font-mono-stats text-[24px] font-semibold text-secondary tracking-tighter">98.2%</div>
+</div>
+</div>
+<div class="col-span-3 h-48 relative flex items-end">
+<!-- Simulated Chart -->
+<div class="w-full h-full absolute inset-0 flex items-end justify-between px-2 pb-2 opacity-80" style="background-image: linear-gradient(to right, transparent 0%, transparent 100%), linear-gradient(to bottom, #2e2e48 1px, transparent 1px); background-size: 100% 20%; background-position: left bottom;">
+<!-- Mock Data Lines -->
+<svg class="w-full h-full absolute inset-0 overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,15" fill="none" stroke="#6366f1" stroke-width="1.5" style="filter: drop-shadow(0 0 4px rgba(99,102,241,0.4));"></path>
+<path d="M0,90 L10,88 L20,92 L30,80 L40,85 L50,70 L60,75 L70,50 L80,60 L90,40 L100,45" fill="none" opacity="0.6" stroke="#4ae176" stroke-dasharray="2,2" stroke-width="1"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Middle Row: Active Agent Clusters -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-h3 text-h3 text-on-surface">Active Agent Clusters</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Cluster 1 -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col">
+<div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 text-[18px]">search</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider">Research Stage</span>
+</div>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-xs">12 Active</span>
+</div>
+<div class="p-4 space-y-3 flex-1">
+<!-- Agent Card -->
+<div class="bg-[#0f0f1a] border border-primary/30 rounded-lg p-3 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="font-mono-stats text-sm text-primary">Agent 04</div>
+<span class="flex h-1.5 w-1.5 relative mt-1">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+</span>
+</div>
+<div class="text-xs text-on-surface-variant mb-2">Scraping LinkedIn profiles for Acme Corp...</div>
+<div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<!-- Agent Card -->
+<div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 relative opacity-70">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-variant"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="font-mono-stats text-sm text-on-surface-variant">Agent 09</div>
+<span class="h-1.5 w-1.5 rounded-full bg-surface-variant mt-1"></span>
+</div>
+<div class="text-xs text-on-surface-variant">Queued - Waiting for API quota</div>
+</div>
+</div>
+</div>
+<!-- Cluster 2 -->
+<div class="bg-[#1a1a2e] border border-[#6366f1] rounded-xl flex flex-col shadow-[0_0_20px_rgba(99,102,241,0.05)] relative">
+<div class="absolute top-0 right-0 w-16 h-16 bg-[#6366f1]/10 rounded-tr-xl blur-xl"></div>
+<div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">edit_note</span>
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Personalization</span>
+</div>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-xs border border-primary/30">24 Active</span>
+</div>
+<div class="p-4 space-y-3 flex-1">
+<!-- Agent Card -->
+<div class="bg-[#0f0f1a] border border-primary/30 rounded-lg p-3 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="font-mono-stats text-sm text-primary">Agent 12</div>
+<span class="flex h-1.5 w-1.5 relative mt-1">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+</span>
+</div>
+<div class="text-xs text-on-surface-variant mb-2">Generating hooks for C-Level tech...</div>
+<div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2"></div>
+</div>
+</div>
+<!-- Agent Card -->
+<div class="bg-[#0f0f1a] border border-secondary/30 rounded-lg p-3 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="font-mono-stats text-sm text-secondary">Agent 15</div>
+<span class="h-1.5 w-1.5 rounded-full bg-secondary mt-1 shadow-[0_0_5px_#4ae176]"></span>
+</div>
+<div class="text-xs text-on-surface-variant">Batch complete. 50 drafts ready.</div>
+</div>
+</div>
+</div>
+<!-- Cluster 3 -->
+<div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col">
+<div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">send</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider">Execution</span>
+</div>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-xs">12 Active</span>
+</div>
+<div class="p-4 space-y-3 flex-1">
+<!-- Agent Card -->
+<div class="bg-[#0f0f1a] border border-secondary/30 rounded-lg p-3 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="font-mono-stats text-sm text-secondary">Agent 22</div>
+<span class="flex h-1.5 w-1.5 relative mt-1">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-secondary"></span>
+</span>
+</div>
+<div class="text-xs text-on-surface-variant mb-2">Dispatching Sequence A variants...</div>
+<div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[90%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Row: Map & Logs -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-[400px]">
+<!-- Map -->
+<div class="lg:col-span-2 bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col overflow-hidden relative">
+<div class="p-4 border-b border-[#2e2e48] flex items-center justify-between z-10 bg-[#1a1a2e]/80 backdrop-blur-sm absolute top-0 left-0 right-0">
+<h3 class="font-h3 text-h3 text-on-surface">Global Outreach Map</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_5px_#c0c1ff]"></span> Sent</div>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_5px_#4ae176]"></span> Reply</div>
+</div>
+</div>
+<!-- Placeholder for Map Visualization -->
+<div class="flex-1 bg-[#0f0f1a] relative w-full h-full flex items-center justify-center pt-14" style="background-image: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);">
+<div class="w-full h-full opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cpattern id=\'grid\' width=\'20\' height=\'20\' patternUnits=\'userSpaceOnUse\'%3E%3Cpath d=\'M 20 0 L 0 0 0 20\' fill=\'none\' stroke=\'%232e2e48\' stroke-width=\'0.5\'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'url(%23grid)\'/%3E%3C/svg%3E');"></div>
+<!-- Map Image with Alt Prompt -->
+<img alt="World Map Visualization" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen" data-alt="A highly stylized, dark-mode digital map of the world used for data visualization in a cybersecurity or tech dashboard context. The map is rendered in deep indigo and black tones, featuring subtle glowing nodes and sweeping connections across continents. The visual style is minimalist and precise, resembling high-end developer tools with neon accents of purple and green representing data points. The lighting is low-key, creating a moody, atmospheric, and technical environment." data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCabWLMHo2SGC-8vpxEAD6zDiqZw8RQKMPLJCCNMuRURIpMRhYjCymO4eMOhpxrb0Nr2fDEkTbZsuaPDkB43Flvtdce1UDWkwPyIFuyEpYZ7Q9mKOt3bQsYFmJ8DmKlMT1q8O9PXggN1AAU3MAcPl8vhx2Lj7Eo8XYG-JbXojLcaws7vIYBumNHKyyoVy2P0qTylIVNQSzs9G7IgMHETkyphf4I8vGo6KHD_ltHwn9syynzqYccgj6FI9vtvCQxmA7qZYL_I-w7nzw"/>
+<!-- Pulse points -->
+<div class="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#c0c1ff] animate-ping"></div>
+<div class="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-primary"></div>
+<div class="absolute top-[40%] left-[70%] w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_#4ae176] animate-pulse"></div>
+<div class="absolute top-[60%] left-[80%] w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#c0c1ff]"></div>
+</div>
+</div>
+<!-- Unified Live Feed -->
+<div class="bg-[#0d0d15] border border-[#2e2e48] rounded-xl flex flex-col font-mono text-xs overflow-hidden">
+<div class="p-3 border-b border-[#2e2e48] flex items-center justify-between bg-[#13131b]">
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider text-[10px]">Unified Live Feed</span>
+<span class="material-symbols-outlined text-gray-500 text-[14px]">terminal</span>
+</div>
+<div class="flex-1 p-3 overflow-y-auto terminal-scroll space-y-2 text-gray-400">
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:01</span>
+<span class="text-primary">[SYS]</span>
+<span>Agent cluster alpha scaled to 12 instances.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:02</span>
+<span class="text-tertiary">[DECISION]</span>
+<span>A-04 skipped prospect jsmith@acme (low intent score 0.3).</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:05</span>
+<span class="text-secondary">[SUCCESS]</span>
+<span class="text-white">Email delivered to m.doe@globex.com (Thread: Q3 Outreach).</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:08</span>
+<span class="text-primary">[SYS]</span>
+<span>Rate limit approaching for API key ending in *492. Throttling...</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:10</span>
+<span class="text-tertiary">[DECISION]</span>
+<span>A-12 injected personalized hook based on recent funding news.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:12</span>
+<span class="text-error">[WARN]</span>
+<span>Bounce detected: invalid domain format.</span>
+</div>
+<div class="flex gap-2">
+<span class="text-[#3f3f5a]">14:23:15</span>
+<span class="text-secondary">[SUCCESS]</span>
+<span class="text-white">Positive reply received from VP Sales at TechCorp.</span>
+</div>
+<div class="flex gap-2 opacity-50">
+<span class="text-[#3f3f5a]">14:23:16</span>
+<span class="text-primary animate-pulse">_</span>
+<span>Awaiting next event...</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
