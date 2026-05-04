@@ -43,6 +43,12 @@ Research Agent → Personalization Agent → Email Writer → Content Optimizer 
 
 ---
 
+## Demo
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/fd6afe23-4170-4340-9371-bf59b874b042" />
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/fc3cfc2f-19dd-48d1-9a43-cc979d8a4502" />
+<img width="1600" height="1586" alt="screen" src="https://github.com/user-attachments/assets/668f310a-f5a7-4927-93df-3a0ffc44f43c" />
+
+
 ## Quickstart
 
 ### Option 1: Docker (Recommended)
