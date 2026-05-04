@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+memory/faiss_index/
+logs/
+cold_email_system.log
+.coverage
+htmlcov/
+dist/
+*.egg-info/

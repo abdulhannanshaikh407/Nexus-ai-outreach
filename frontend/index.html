@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AI Cold Email Outreach System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="design-tokens.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .page { animation: fadeIn 0.15s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+        .hidden { display: none; }
+        .nav-tab.active { border-bottom: 2px solid #c0c1ff; color: #c0c1ff; }
+        .nav-tab { color: #908fa0; }
+        .nav-tab:hover:not(.active) { color: #e4e1ed; }
+        html { scroll-behavior: smooth; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .pipeline-scroll::-webkit-scrollbar { height: 4px; }
+        .pipeline-scroll::-webkit-scrollbar-track { background: #13131b; }
+        .pipeline-scroll::-webkit-scrollbar-thumb { background: #34343d; border-radius: 4px; }
+        .terminal-scroll::-webkit-scrollbar { width: 4px; }
+        .terminal-scroll::-webkit-scrollbar-track { background: #13131b; }
+        .terminal-scroll::-webkit-scrollbar-thumb { background: #34343d; border-radius: 4px; }
+        .bg-level-1 { background-color: #1a1a2e; }
+        .border-level-1 { border-color: #2e2e48; }
+        .text-primary-accent { color: #6366f1; }
+        .bg-primary-accent { background-color: #6366f1; }
+        .border-primary-accent { border-color: #6366f1; }
+    </style>
+</head>
+<body class="bg-[#13131b] text-[#e4e1ed] min-h-screen selection:bg-[#8083ff] selection:text-[#1000a9]">
+    <!-- Outer Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#13131b]/90 backdrop-blur-sm border-b border-[#2e2e3a]">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-[#c0c1ff] cursor-pointer" onclick="showPage('page-home')">ColdEmail AI</div>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="nav-tab active" data-page="page-home" onclick="showPage('page-home')">Home</a>
+                <a href="#" class="nav-tab" data-page="page-dash" onclick="showPage('page-dash')">Dashboard</a>
+                <a href="#" class="nav-tab" data-page="page-demo" onclick="showPage('page-demo')">Live Demo</a>
+                <a href="#" class="nav-tab" data-page="page-activity" onclick="showPage('page-activity')">Activity Log</a>
+                <a href="https://github.com/abdulhannanshaikh407/cold-email-system" class="bg-[#8083ff] hover:bg-[#494bd6] px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-[#13131b]">
+                    View on GitHub →
+                </a>
+            </div>
+            <!-- Mobile Hamburger -->
+            <button class="md:hidden text-[#e4e1ed]" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-nav" class="hidden md:hidden bg-[#1f1f27] border-t border-[#2e2e3a] px-6 py-4 space-y-3">
+            <a href="#" class="block nav-tab active" data-page="page-home" onclick="showPage('page-home'); document.getElementById('mobile-nav').classList.add('hidden');">Home</a>
+            <a href="#" class="block nav-tab" data-page="page-dash" onclick="showPage('page-dash'); document.getElementById('mobile-nav').classList.add('hidden');">Dashboard</a>
+            <a href="#" class="block nav-tab" data-page="page-demo" onclick="showPage('page-demo'); document.getElementById('mobile-nav').classList.add('hidden');">Live Demo</a>
+            <a href="#" class="block nav-tab" data-page="page-activity" onclick="showPage('page-activity'); document.getElementById('mobile-nav').classList.add('hidden');">Activity Log</a>
+            <a href="https://github.com/abdulhannanshaikh407/cold-email-system" class="inline-block bg-[#8083ff] hover:bg-[#494bd6] px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-[#13131b]">
+                View on GitHub →
+            </a>
+        </div>
+    </nav>
+
+    <!-- PAGE 1: HOME (Original Landing Page) -->
+    <div id="page-home" class="page">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-[#e4e1ed]">AI Cold Email Outreach System</h1>
+            <p class="text-xl md:text-2xl text-[#c7c4d7] mb-10 max-w-3xl mx-auto">
+                6-agent LangChain pipeline that researches prospects, writes personalized emails, and optimizes delivery
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="showPage('page-demo')" class="bg-[#8083ff] hover:bg-[#494bd6] px-8 py-3 rounded-lg font-semibold transition-colors text-[#13131b]">
+                    Try Live Demo
+                </button>
+                <button onclick="showPage('page-dash')" class="border border-[#8083ff] hover:bg-[#8083ff]/10 px-8 py-3 rounded-lg font-semibold transition-colors">
+                    View Dashboard
+                </button>
+            </div>
+        </section>
+
+        <!-- Architecture Diagram -->
+        <section class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#e4e1ed]">Pipeline Architecture</h2>
+            <div class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 md:gap-2">
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">🔍</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Research</h3>
+                    <p class="text-[#c7c4d7] text-sm">Gathers company/prospect data via web & LinkedIn</p>
+                </div>
+                <div class="text-[#8083ff] text-2xl font-bold">→</div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">👤</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Personalization</h3>
+                    <p class="text-[#c7c4d7] text-sm">Builds detailed prospect profiles & pain points</p>
+                </div>
+                <div class="text-[#8083ff] text-2xl font-bold">→</div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">✉️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Email Writer</h3>
+                    <p class="text-[#c7c4d7] text-sm">Generates personalized emails using AIDA/PAS</p>
+                </div>
+                <div class="text-[#8083ff] text-2xl font-bold">→</div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Content Optimizer</h3>
+                    <p class="text-[#c7c4d7] text-sm">Optimizes readability & spam score</p>
+                </div>
+                <div class="text-[#8083ff] text-2xl font-bold">→</div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">📅</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Scheduler</h3>
+                    <p class="text-[#c7c4d7] text-sm">Calculates optimal send times</p>
+                </div>
+                <div class="text-[#8083ff] text-2xl font-bold">→</div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border-l-4 border-[#8083ff] border border-[#2e2e3a] w-64">
+                    <div class="text-4xl mb-3">🧠</div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#c0c1ff]">Memory</h3>
+                    <p class="text-[#c7c4d7] text-sm">Stores interactions in FAISS vector DB</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#e4e1ed]">Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">🔍</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">Research Agent</h3>
+                    <p class="text-[#c7c4d7] text-sm">Automatically researches prospects using company data, LinkedIn profiles, and industry trends.</p>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">✉️</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">Email Writer</h3>
+                    <p class="text-[#c7c4d7] text-sm">Generates highly personalized cold emails using proven frameworks like AIDA and PAS.</p>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">🛡️</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">Spam Optimizer</h3>
+                    <p class="text-[#c7c4d7] text-sm">Analyzes and optimizes email content to avoid spam filters and improve deliverability.</p>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">🧠</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">FAISS Memory</h3>
+                    <p class="text-[#c7c4d7] text-sm">Stores past interactions in a vector database for smarter personalization.</p>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">📊</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">CSV Bulk Send</h3>
+                    <p class="text-[#c7c4d7] text-sm">Process hundreds of leads at once with CSV import and automated bulk sending.</p>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl shadow-lg border border-[#2e2e3a]">
+                    <div class="text-3xl mb-3">🚀</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#e4e1ed]">Dry Run Mode</h3>
+                    <p class="text-[#c7c4d7] text-sm">Test your entire pipeline without sending real emails to validate content and flow.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack + Setup -->
+        <section class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#e4e1ed]">Tech Stack & Setup</h2>
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">Python 3.11+</span>
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">LangChain</span>
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">OpenAI</span>
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">FAISS</span>
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">FastAPI</span>
+                <span class="bg-[#1f1f27] border border-[#8083ff] px-4 py-2 rounded-full text-sm text-[#e4e1ed]">Docker</span>
+            </div>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-[#e4e1ed]">Quickstart</h3>
+                <div class="bg-[#1f1f27] p-6 rounded-xl border border-[#2e2e3a]">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-[#8083ff] w-8 h-8 rounded-full flex items-center justify-center font-bold text-[#13131b]">1</span>
+                        <h4 class="font-semibold text-[#e4e1ed]">Clone the repository</h4>
+                    </div>
+                    <pre class="bg-[#13131b] p-4 rounded-lg overflow-x-auto text-sm text-[#c7c4d7]"><code>git clone https://github.com/abdulhannanshaikh407/cold-email-system.git
+cd cold-email-system</code></pre>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl border border-[#2e2e3a]">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-[#8083ff] w-8 h-8 rounded-full flex items-center justify-center font-bold text-[#13131b]">2</span>
+                        <h4 class="font-semibold text-[#e4e1ed]">Configure environment</h4>
+                    </div>
+                    <pre class="bg-[#13131b] p-4 rounded-lg overflow-x-auto text-sm text-[#c7c4d7]"><code>cp .env.example .env
+# Add your OPENAI_API_KEY to .env</code></pre>
+                </div>
+                <div class="bg-[#1f1f27] p-6 rounded-xl border border-[#2e2e3a]">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-[#8083ff] w-8 h-8 rounded-full flex items-center justify-center font-bold text-[#13131b]">3</span>
+                        <h4 class="font-semibold text-[#e4e1ed]">Run with Docker</h4>
+                    </div>
+                    <pre class="bg-[#13131b] p-4 rounded-lg overflow-x-auto text-sm text-[#c7c4d7]"><code>docker-compose up</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (Home Page Only) -->
+        <footer class="text-center py-8 text-[#464554] text-sm border-t border-[#2e2e3a]">
+            Built with LangChain · OpenAI · Python · FastAPI
+            <br>
+            <a href="https://github.com/abdulhannanshaikh407/cold-email-system" class="text-[#c0c1ff] hover:underline">View Source on GitHub →</a>
+        </footer>
+    </div>
+
+    <!-- PAGE 2: DASHBOARD (from outreach_ai_dashboard/code.html) -->
+    <div id="page-dash" class="page hidden">
+        <div class="flex-1 flex flex-col min-h-screen">
+            <!-- TopNavBar -->
+            <header class="border-b border-[#2e2e48] h-16 bg-[#0f0f1a]/80 backdrop-blur-md flex items-center justify-between px-8 z-40">
+                <div class="flex-1 flex items-center">
+                    <div class="relative w-64">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#94a3b8] text-[18px]">search</span>
+                        <input class="w-full bg-[#13131b] border border-[#2e2e48] rounded text-[#e4e1ed] pl-10 pr-4 py-1.5 text-sm focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-colors outline-none font-['Inter']" placeholder="Search leads, campaigns..." type="text"/>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <button class="text-[#94a3b8] hover:text-white transition-colors cursor-pointer active:opacity-80 flex items-center justify-center relative">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-[#ffb4ab] rounded-full"></span>
+                    </button>
+                    <button class="bg-[#6366f1] hover:bg-[#4f52d8] text-white px-4 py-1.5 rounded font-['Inter'] text-sm font-medium transition-colors">
+                        New Campaign
+                    </button>
+                    <img alt="User Avatar" class="w-8 h-8 rounded-full object-cover border border-[#2e2e48]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmCe4-Rmn3LKnCsteu_TkcS47EuXV3YPojOoB9LwIzjoWG2ylYNrPoTamQI8FsvEzXwVqw-oyyFJQ4KsqOH7HyUr8qbjliORUmH-ktj2A25Ai2ofilqmWdVAQqNVLtsfw7SqwgZtig9y6QUE4XCAVcoqdX3mNJKXBKaSjp-KLRRyiukyEoflKBA92U3ocgn6WpPuY5tBBUB4d0smY_6cVYXQ2Mgmng66doal_RFLbGXN0i_EIDI6IpWfWcrTFTvfSk8gUG1y2b6Mw"/>
+                </div>
+            </header>
+            <!-- Main Canvas -->
+            <main class="flex-1 h-[calc(100vh-64px)] overflow-y-auto p-8 relative flex">
+                <!-- Left Content Area (Stats, Stepper, Table) -->
+                <div class="flex-1 max-w-container-max mx-auto space-y-8 pr-8">
+                    <div class="flex justify-between items-end mb-2">
+                        <h1 class="font-h2 text-h2 text-white">Dashboard</h1>
+                        <div class="text-[#94a3b8] font-body-sm text-body-sm">Last updated: Just now</div>
+                    </div>
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-4 gap-6">
+                        <!-- Card 1 -->
+                        <div class="bg-level-1 border border-level-1 rounded p-5 hover:-translate-y-1 transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="font-label-caps text-label-caps text-[#94a3b8]">EMAILS SENT</span>
+                                <span class="material-symbols-outlined text-[#94a3b8] text-[18px]">mail</span>
+                            </div>
+                            <div class="flex items-baseline gap-3">
+                                <span class="font-mono-stats text-mono-stats text-white text-3xl">12,408</span>
+                                <span class="flex items-center text-[#4ae176] text-sm font-medium">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span> 12%
+                                </span>
+                            </div>
+                            <div class="mt-4 h-8 flex items-end gap-1 opacity-70">
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[40%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[60%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[50%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[80%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[70%]"></div>
+                                <div class="w-1/6 bg-primary-accent rounded-t h-[100%]"></div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-level-1 border border-level-1 rounded p-5 hover:-translate-y-1 transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="font-label-caps text-label-caps text-[#94a3b8]">OPEN RATE</span>
+                                <span class="material-symbols-outlined text-[#94a3b8] text-[18px]">visibility</span>
+                            </div>
+                            <div class="flex items-baseline gap-3">
+                                <span class="font-mono-stats text-mono-stats text-white text-3xl">48.2%</span>
+                                <span class="flex items-center text-[#4ae176] text-sm font-medium">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span> 2.4%
+                                </span>
+                            </div>
+                            <div class="mt-4 h-8 flex items-end gap-1 opacity-70">
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[30%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[45%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[40%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[65%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[60%]"></div>
+                                <div class="w-1/6 bg-[#4ae176] rounded-t h-[80%]"></div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-level-1 border border-level-1 rounded p-5 hover:-translate-y-1 transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="font-label-caps text-label-caps text-[#94a3b8]">REPLY RATE</span>
+                                <span class="material-symbols-outlined text-[#94a3b8] text-[18px]">forum</span>
+                            </div>
+                            <div class="flex items-baseline gap-3">
+                                <span class="font-mono-stats text-mono-stats text-white text-3xl">8.7%</span>
+                                <span class="flex items-center text-[#ffb4ab] text-sm font-medium">
+                                    <span class="material-symbols-outlined text-[14px]">trending_down</span> 0.5%
+                                </span>
+                            </div>
+                            <div class="mt-4 h-8 flex items-end gap-1 opacity-70">
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[70%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[60%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[50%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[45%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[50%]"></div>
+                                <div class="w-1/6 bg-[#ffb4ab] rounded-t h-[30%]"></div>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-level-1 border border-level-1 rounded p-5 hover:-translate-y-1 transition-transform duration-200">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="font-label-caps text-label-caps text-[#94a3b8]">LEADS IN PIPELINE</span>
+                                <span class="material-symbols-outlined text-[#94a3b8] text-[18px]">filter_alt</span>
+                            </div>
+                            <div class="flex items-baseline gap-3">
+                                <span class="font-mono-stats text-mono-stats text-white text-3xl">3,192</span>
+                                <span class="flex items-center text-[#4ae176] text-sm font-medium">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span> 415
+                                </span>
+                            </div>
+                            <div class="mt-4 h-8 flex items-end gap-1 opacity-70">
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[20%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[30%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[50%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[70%]"></div>
+                                <div class="w-1/6 bg-[#2e2e48] rounded-t h-[85%]"></div>
+                                <div class="w-1/6 bg-primary-accent rounded-t h-[100%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Agent Pipeline Visualizer -->
+                    <div class="bg-level-1 border border-level-1 rounded p-6">
+                        <h2 class="font-h3 text-h3 text-white mb-6">Agent Pipeline</h2>
+                        <div class="flex items-center justify-between relative">
+                            <!-- Progress Line Background -->
+                            <div class="absolute left-8 right-8 top-1/2 -translate-y-1/2 h-[2px] bg-[#2e2e48] -z-10"></div>
+                            <!-- Active Progress Line -->
+                            <div class="absolute left-8 top-1/2 -translate-y-1/2 h-[2px] bg-[#4ae176] w-[40%] -z-10"></div>
+                            <!-- Stages -->
+                            <!-- Research (Complete) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#4ae176] bg-[#1a1a2e] flex items-center justify-center text-[#4ae176]">
+                                    <span class="material-symbols-outlined text-[20px]">check</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-white">Research</span>
+                            </div>
+                            <!-- Personalize (Complete) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#4ae176] bg-[#1a1a2e] flex items-center justify-center text-[#4ae176]">
+                                    <span class="material-symbols-outlined text-[20px]">check</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-white">Personalize</span>
+                            </div>
+                            <!-- Write (Active) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-primary-accent bg-[#6366f1]/10 flex items-center justify-center text-primary-accent shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-primary-accent font-medium">Write</span>
+                            </div>
+                            <!-- Optimize (Pending) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#2e2e48] bg-[#1a1a2e] flex items-center justify-center text-[#94a3b8]">
+                                    <span class="material-symbols-outlined text-[20px]">bolt</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-[#94a3b8]">Optimize</span>
+                            </div>
+                            <!-- Schedule (Pending) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#2e2e48] bg-[#1a1a2e] flex items-center justify-center text-[#94a3b8]">
+                                    <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-[#94a3b8]">Schedule</span>
+                            </div>
+                            <!-- Memory (Pending) -->
+                            <div class="flex flex-col items-center gap-2 bg-[#1a1a2e] px-2 relative z-10">
+                                <div class="w-10 h-10 rounded-full border-2 border-[#2e2e48] bg-[#1a1a2e] flex items-center justify-center text-[#94a3b8]">
+                                    <span class="material-symbols-outlined text-[20px]">psychology</span>
+                                </div>
+                                <span class="font-body-sm text-body-sm text-[#94a3b8]">Memory</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Leads Table -->
+                    <div class="bg-level-1 border border-level-1 rounded overflow-hidden">
+                        <div class="p-4 border-b border-level-1 flex justify-between items-center bg-[#1a1a2e]">
+                            <h3 class="font-label-caps text-label-caps text-white">ACTIVE LEADS</h3>
+                            <button class="text-xs text-[#94a3b8] hover:text-white flex items-center gap-1">
+                                View All <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-[#2e2e48] bg-[#13131b]/50">
+                                        <th class="p-4 font-label-caps text-label-caps text-[#94a3b8] font-medium w-1/4">Lead</th>
+                                        <th class="p-4 font-label-caps text-label-caps text-[#94a3b8] font-medium">Status</th>
+                                        <th class="p-4 font-label-caps text-label-caps text-[#94a3b8] font-medium w-1/4">Spam Score</th>
+                                        <th class="p-4 font-label-caps text-label-caps text-[#94a3b8] font-medium w-1/3">Email Preview</th>
+                                        <th class="p-4 font-label-caps text-label-caps text-[#94a3b8] font-medium text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="font-body-sm text-body-sm">
+                                    <tr class="border-b border-[#2e2e48] hover:bg-[#1a1a2e]/80 transition-colors group">
+                                        <td class="p-4">
+                                            <div class="text-white font-medium">Sarah Jenkins</div>
+                                            <div class="text-[#94a3b8] text-xs">Acme Corp</div>
+                                        </td>
+                                        <td class="p-4">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8083ff]/20 text-primary-accent border border-[#8083ff]/30">
+                                                Writing
+                                            </span>
+                                        </td>
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-2">
+                                                <div class="flex-1 h-1.5 bg-[#2e2e48] rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#4ae176] w-[15%]"></div>
+                                                </div>
+                                                <span class="text-xs text-[#94a3b8]">15</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-[#94a3b8] truncate max-w-[200px]">
+                                            Noted your recent funding round...
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-[#94a3b8] hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-[#2e2e48] hover:bg-[#1a1a2e]/80 transition-colors bg-[#2e2e48]/20 group border-l-2 border-l-primary-accent">
+                                        <td class="p-4">
+                                            <div class="text-white font-medium">David Chen</div>
+                                            <div class="text-[#94a3b8] text-xs">Stark Industries</div>
+                                        </td>
+                                        <td class="p-4">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#d97721]/20 text-[#ffb783] border border-[#d97721]/30">
+                                                Researching
+                                            </span>
+                                        </td>
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-2">
+                                                <div class="flex-1 h-1.5 bg-[#2e2e48] rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#ffb4ab] w-[85%]"></div>
+                                                </div>
+                                                <span class="text-xs text-[#94a3b8]">85</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-[#94a3b8] truncate max-w-[200px]">
+                                            Generating insights based on Q3...
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-[#94a3b8] hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-[#1a1a2e]/80 transition-colors group">
+                                        <td class="p-4">
+                                            <div class="text-white font-medium">Elena Rodriguez</div>
+                                            <div class="text-[#94a3b8] text-xs">Global Tech</div>
+                                        </td>
+                                        <td class="p-4">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#00b954]/20 text-[#4ae176] border border-[#00b954]/30">
+                                                Sent
+                                            </span>
+                                        </td>
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-2">
+                                                <div class="flex-1 h-1.5 bg-[#2e2e48] rounded-full overflow-hidden">
+                                                    <div class="h-full bg-[#4ae176] w-[5%]"></div>
+                                                </div>
+                                                <span class="text-xs text-[#94a3b8]">5</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-[#94a3b8] truncate max-w-[200px]">
+                                            Hi Elena, I saw your post regarding...
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-[#94a3b8] hover:text-white transition-colors">
+                                                <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Drawer: Email Preview -->
+                <aside class="w-[380px] border-l border-[#2e2e48] bg-[#1a1a2e] flex flex-col rounded-l shadow-[-10px_0_30px_rgba(0,0,0,0.2)]">
+                    <div class="p-4 border-b border-[#2e2e48] flex justify-between items-center">
+                        <h3 class="font-h3 text-h3 text-white">Email Preview</h3>
+                        <button class="text-[#94a3b8] hover:text-white">
+                            <span class="material-symbols-outlined text-[20px]">close</span>
+                        </button>
+                    </div>
+                    <div class="p-6 flex-1 overflow-y-auto">
+                        <div class="mb-6">
+                            <div class="font-label-caps text-label-caps text-[#94a3b8] mb-1">SUBJECT</div>
+                            <div class="font-h3 text-white">Scaling infrastructure at Stark Ind.</div>
+                        </div>
+                        <div class="mb-6 p-4 bg-[#13131b] rounded border border-[#2e2e48] font-mono text-sm text-[#c7c4d7] whitespace-pre-wrap leading-relaxed">
+Hi David,
+
+I noticed Stark Industries recently expanded its compute footprint in EU-West.
+
+Given your focus on low-latency data processing, I thought you might be interested in how we helped Acme Corp reduce their query times by 40% using our edge AI optimization.
+
+Would you be open to a brief chat next Tuesday to see if this aligns with your current Q4 objectives?
+
+Best,
+Alex
+                        </div>
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-label-caps text-label-caps text-[#94a3b8]">SPAM SCORE</span>
+                                <span class="text-xs font-mono text-[#ffb4ab]">85 / 100 (High)</span>
+                            </div>
+                            <div class="h-2 w-full rounded-full bg-gradient-to-r from-[#4ae176] via-[#ffb783] to-[#ffb4ab] relative">
+                                <div class="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full border-2 border-[#34343d] shadow" style="left: 85%;"></div>
+                            </div>
+                            <p class="text-xs text-[#94a3b8] mt-2">Score is high due to rapid follow-ups. Recommend editing.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-[#2e2e48] bg-[#13131b] flex gap-3">
+                        <button class="flex-1 bg-transparent border border-[#2e2e48] text-white hover:border-[#3f3f5a] hover:bg-[#1a1a2e] px-4 py-2 rounded font-medium text-sm transition-colors flex justify-center items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                        </button>
+                        <button class="flex-1 bg-primary-accent hover:bg-[#4f52d8] text-white px-4 py-2 rounded font-medium text-sm transition-colors flex justify-center items-center gap-2 opacity-50 cursor-not-allowed" disabled="">
+                            <span class="material-symbols-outlined text-[18px]">send</span> Send Now
+                        </button>
+                    </div>
+                </aside>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 3: LIVE DEMO (from live_demo_sandbox/code.html) -->
+    <div id="page-demo" class="page hidden">
+        <div class="flex-1 flex flex-col min-h-screen">
+            <!-- TopNavBar -->
+            <header class="bg-[#0f0f1a]/80 backdrop-blur-md text-[#6366f1] font-['Inter'] text-sm font-medium sticky top-0 z-40 w-full border-b border-[#2e2e48] flex items-center justify-between px-8 h-16">
+                <div class="flex items-center gap-8">
+                    <div class="text-[#e4e1ed] font-h3 text-h3">Live Demo Environment</div>
+                    <div class="hidden md:flex items-center gap-6 border-l border-[#34343d] pl-8">
+                        <div class="relative group cursor-pointer active:scale-95 transition-transform">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]">search</span>
+                            <input class="bg-[#1a1a2e] border border-[#2e2e48] rounded-md pl-9 pr-4 py-1.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#6366f1] w-64" placeholder="Search logs, agents..." type="text"/>
+                        </div>
+                        <nav class="flex items-center gap-6">
+                            <a class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Analytics</a>
+                            <a class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Workflows</a>
+                            <a class="text-[#6366f1] font-semibold cursor-pointer active:scale-95 transition-transform" href="#">Logs</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-3 py-1.5 rounded-md border border-[#2e2e48] text-gray-300 hover:border-[#3f3f5a] hover:text-white transition-colors text-sm font-medium cursor-pointer active:scale-95 transition-transform">
+                        Export Data
+                    </button>
+                    <button class="px-3 py-1.5 rounded-md bg-[#6366f1] text-white hover:bg-indigo-600 transition-colors text-sm font-medium cursor-pointer active:scale-95 transition-transform shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                        Deploy Sandbox
+                    </button>
+                    <div class="flex items-center gap-3 border-l border-[#34343d] pl-4 ml-2">
+                        <button class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                        </button>
+                        <button class="text-gray-400 hover:text-white transition-colors cursor-pointer active:scale-95 transition-transform">
+                            <span class="material-symbols-outlined text-[24px]">account_circle</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <!-- Canvas -->
+            <main class="flex-1 p-gutter max-w-container-max mx-auto w-full flex flex-col gap-gutter">
+                <!-- Top Row: System Heartbeat -->
+                <section class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-6 relative overflow-hidden group hover:border-[#3f3f5a] transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#6366f1]/5 to-transparent pointer-events-none"></div>
+                    <div class="flex items-center justify-between mb-6 relative z-10">
+                        <div>
+                            <h2 class="font-h2 text-h2 text-[#e4e1ed] flex items-center gap-2">
+                                System Heartbeat
+                                <span class="flex h-2 w-2 relative ml-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ae176] opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#4ae176]"></span>
+                                </span>
+                            </h2>
+                            <p class="font-body-sm text-body-sm text-[#c7c4d7] mt-1">Real-time throughput and global agent capacity.</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-[#0f0f1a] p-1 rounded-lg border border-[#2e2e48]">
+                            <button class="px-3 py-1 rounded text-xs font-medium bg-[#2e2e48] text-white flex items-center gap-1 hover:bg-[#3f3f5a] transition-colors">
+                                <span class="material-symbols-outlined text-[14px]">play_arrow</span> Start
+                            </button>
+                            <button class="px-3 py-1 rounded text-xs font-medium text-gray-400 hover:text-white hover:bg-[#2e2e48] transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">pause</span> Pause
+                            </button>
+                            <button class="px-3 py-1 rounded text-xs font-medium text-gray-400 hover:text-white hover:bg-[#2e2e48] transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">restart_alt</span> Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-6 relative z-10">
+                        <div class="col-span-1 flex flex-col justify-between space-y-4 border-r border-[#34343d] pr-6">
+                            <div>
+                                <div class="font-label-caps text-label-caps text-[#c7c4d7] uppercase tracking-wider mb-1">Requests / Sec</div>
+                                <div class="font-mono-stats text-[32px] font-semibold text-white tracking-tighter">1,204<span class="text-sm text-[#4ae176] ml-2 font-body-sm align-middle">+12%</span></div>
+                            </div>
+                            <div>
+                                <div class="font-label-caps text-label-caps text-[#c7c4d7] uppercase tracking-wider mb-1">Active Agents</div>
+                                <div class="font-mono-stats text-[24px] font-semibold text-[#c0c1ff] tracking-tighter">48 / 50</div>
+                            </div>
+                            <div>
+                                <div class="font-label-caps text-label-caps text-[#c7c4d7] uppercase tracking-wider mb-1">Success Rate</div>
+                                <div class="font-mono-stats text-[24px] font-semibold text-[#4ae176] tracking-tighter">98.2%</div>
+                            </div>
+                        </div>
+                        <div class="col-span-3 h-48 relative flex items-end">
+                            <!-- Simulated Chart -->
+                            <div class="w-full h-full absolute inset-0 flex items-end justify-between px-2 pb-2 opacity-80" style="background-image: linear-gradient(to right, transparent 0%, transparent 100%), linear-gradient(to bottom, #2e2e48 1px, transparent 1px); background-size: 100% 20%; background-position: left bottom;">
+                                <!-- Mock Data Lines -->
+                                <svg class="w-full h-full absolute inset-0 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <path d="M0,80 L10,75 L20,85 L30,60 L40,65 L50,40 L60,45 L70,20 L80,30 L90,10 L100,15" fill="none" stroke="#6366f1" stroke-width="1.5" style="filter: drop-shadow(0 0 4px rgba(99,102,241,0.4));"></path>
+                                    <path d="M0,90 L10,88 L20,92 L30,80 L40,85 L50,70 L60,75 L70,50 L80,60 L90,40 L100,45" fill="none" opacity="0.6" stroke="#4ae176" stroke-dasharray="2,2" stroke-width="1"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Middle Row: Active Agent Clusters -->
+                <section>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-h3 text-h3 text-[#e4e1ed]">Active Agent Clusters</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Cluster 1 -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col">
+                            <div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">search</span>
+                                    <span class="font-label-caps text-label-caps text-[#e4e1ed] uppercase tracking-wider">Research Stage</span>
+                                </div>
+                                <span class="bg-[#34343d] text-[#c7c4d7] px-2 py-0.5 rounded text-xs">12 Active</span>
+                            </div>
+                            <div class="p-4 space-y-3 flex-1">
+                                <!-- Agent Card -->
+                                <div class="bg-[#0f0f1a] border border-[#c0c1ff]/30 rounded-lg p-3 relative overflow-hidden group">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#c0c1ff]"></div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="font-mono-stats text-sm text-[#c0c1ff]">Agent 04</div>
+                                        <span class="flex h-1.5 w-1.5 relative mt-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c0c1ff] opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c0c1ff]"></span>
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-[#c7c4d7] mb-2">Scraping LinkedIn profiles for Acme Corp...</div>
+                                    <div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+                                        <div class="bg-[#c0c1ff] h-full w-3/4"></div>
+                                    </div>
+                                </div>
+                                <!-- Agent Card -->
+                                <div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 relative opacity-70">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#34343d]"></div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="font-mono-stats text-sm text-[#c7c4d7]">Agent 09</div>
+                                        <span class="h-1.5 w-1.5 rounded-full bg-[#34343d] mt-1"></span>
+                                    </div>
+                                    <div class="text-xs text-[#c7c4d7]">Queued - Waiting for API quota</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cluster 2 -->
+                        <div class="bg-[#1a1a2e] border border-[#6366f1] rounded-xl flex flex-col shadow-[0_0_20px_rgba(99,102,241,0.05)] relative">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-[#6366f1]/10 rounded-tr-xl blur-xl"></div>
+                            <div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[#c0c1ff] text-[18px]">edit_note</span>
+                                    <span class="font-label-caps text-label-caps text-[#c0c1ff] uppercase tracking-wider">Personalization</span>
+                                </div>
+                                <span class="bg-[#c0c1ff]/20 text-[#c0c1ff] px-2 py-0.5 rounded text-xs border border-[#c0c1ff]/30">24 Active</span>
+                            </div>
+                            <div class="p-4 space-y-3 flex-1">
+                                <!-- Agent Card -->
+                                <div class="bg-[#0f0f1a] border border-[#c0c1ff]/30 rounded-lg p-3 relative overflow-hidden group">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#c0c1ff]"></div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="font-mono-stats text-sm text-[#c0c1ff]">Agent 12</div>
+                                        <span class="flex h-1.5 w-1.5 relative mt-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c0c1ff] opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#c0c1ff]"></span>
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-[#c7c4d7] mb-2">Generating hooks for C-Level tech...</div>
+                                    <div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+                                        <div class="bg-[#c0c1ff] h-full w-1/2"></div>
+                                    </div>
+                                </div>
+                                <!-- Agent Card -->
+                                <div class="bg-[#0f0f1a] border border-[#4ae176]/30 rounded-lg p-3 relative overflow-hidden group">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#4ae176]"></div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="font-mono-stats text-sm text-[#4ae176]">Agent 15</div>
+                                        <span class="h-1.5 w-1.5 rounded-full bg-[#4ae176] mt-1 shadow-[0_0_5px_#4ae176]"></span>
+                                    </div>
+                                    <div class="text-xs text-[#c7c4d7]">Batch complete. 50 drafts ready.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cluster 3 -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col">
+                            <div class="p-4 border-b border-[#2e2e48] flex items-center justify-between bg-[#1f1f27]/50 rounded-t-xl">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[#4ae176] text-[18px]">send</span>
+                                    <span class="font-label-caps text-label-caps text-[#e4e1ed] uppercase tracking-wider">Execution</span>
+                                </div>
+                                <span class="bg-[#34343d] text-[#c7c4d7] px-2 py-0.5 rounded text-xs">12 Active</span>
+                            </div>
+                            <div class="p-4 space-y-3 flex-1">
+                                <!-- Agent Card -->
+                                <div class="bg-[#0f0f1a] border border-[#4ae176]/30 rounded-lg p-3 relative overflow-hidden group">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#4ae176]"></div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="font-mono-stats text-sm text-[#4ae176]">Agent 22</div>
+                                        <span class="flex h-1.5 w-1.5 relative mt-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ae176] opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4ae176]"></span>
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-[#c7c4d7] mb-2">Dispatching Sequence A variants...</div>
+                                    <div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+                                        <div class="bg-[#4ae176] h-full w-[90%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Bottom Row: Map & Logs -->
+                <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-[400px]">
+                    <!-- Map -->
+                    <div class="lg:col-span-2 bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col overflow-hidden relative">
+                        <div class="p-4 border-b border-[#2e2e48] flex items-center justify-between z-10 bg-[#1a1a2e]/80 backdrop-blur-sm absolute top-0 left-0 right-0">
+                            <h3 class="font-h3 text-h3 text-[#e4e1ed]">Global Outreach Map</h3>
+                            <div class="flex gap-4">
+                                <div class="flex items-center gap-2 text-xs text-[#c7c4d7]"><span class="w-2 h-2 rounded-full bg-[#c0c1ff] shadow-[0_0_5px_#c0c1ff]"></span> Sent</div>
+                                <div class="flex items-center gap-2 text-xs text-[#c7c4d7]"><span class="w-2 h-2 rounded-full bg-[#4ae176] shadow-[0_0_5px_#4ae176]"></span> Reply</div>
+                            </div>
+                        </div>
+                        <!-- Placeholder for Map Visualization -->
+                        <div class="flex-1 bg-[#0f0f1a] relative w-full h-full flex items-center justify-center pt-14" style="background-image: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);">
+                            <div class="w-full h-full opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cpattern id=\'grid\' width=\'20\' height=\'20\' patternUnits=\'userSpaceOnUse\'%3E%3Cpath d=\'M 20 0 L 0 0 0 20\' fill=\'none\' stroke=\'%232e2e48\' stroke-width=\'0.5\'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'url(%23grid)\'/%3E%3C/svg%3E');"></div>
+                            <!-- Map Image with Alt Prompt -->
+                            <img alt="World Map Visualization" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCabWLMHo2SGC-8vpxEAD6zDiqZw8RQKMPLJCCNMuRURIpMRhYjCymO4eMOhpxrb0Nr2fDEkTbZsuaPDkB43Flvtdce1UDWkwPyIFuyEpYZ7Q9mKOt3bQsYFmJ8DmKlMT1q8O9PXggN1AAU3MAcPl8vhx2Lj7Eo8XYG-JbXojLcaws7vIYBumNHKyyoVy2P0qTylIVNQSzs9G7IgMHETkyphf4I8vGo6KHD_ltHwn9syynzqYccgj6FI9vtvCQxmA7qZYL_I-w7nzw"/>
+                            <!-- Pulse points -->
+                            <div class="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-[#c0c1ff] shadow-[0_0_10px_#c0c1ff] animate-ping"></div>
+                            <div class="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-[#c0c1ff]"></div>
+                            <div class="absolute top-[40%] left-[70%] w-2 h-2 rounded-full bg-[#4ae176] shadow-[0_0_10px_#4ae176] animate-pulse"></div>
+                            <div class="absolute top-[60%] left-[80%] w-2 h-2 rounded-full bg-[#c0c1ff] shadow-[0_0_10px_#c0c1ff]"></div>
+                        </div>
+                    </div>
+                    <!-- Unified Live Feed -->
+                    <div class="bg-[#0d0d15] border border-[#2e2e48] rounded-xl flex flex-col font-mono text-xs overflow-hidden">
+                        <div class="p-3 border-b border-[#2e2e48] flex items-center justify-between bg-[#13131b]">
+                            <span class="font-label-caps text-label-caps text-[#e4e1ed] uppercase tracking-wider text-[10px]">Unified Live Feed</span>
+                            <span class="material-symbols-outlined text-gray-500 text-[14px]">terminal</span>
+                        </div>
+                        <div class="flex-1 p-3 overflow-y-auto terminal-scroll space-y-2 text-gray-400">
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:01</span>
+                                <span class="text-[#c0c1ff]">[SYS]</span>
+                                <span>Agent cluster alpha scaled to 12 instances.</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:02</span>
+                                <span class="text-[#ffb783]">[DECISION]</span>
+                                <span>A-04 skipped prospect jsmith@acme (low intent score 0.3).</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:05</span>
+                                <span class="text-[#4ae176]">[SUCCESS]</span>
+                                <span class="text-white">Email delivered to m.doe@globex.com (Thread: Q3 Outreach).</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:08</span>
+                                <span class="text-[#c0c1ff]">[SYS]</span>
+                                <span>Rate limit approaching for API key ending in *492. Throttling...</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:10</span>
+                                <span class="text-[#ffb783]">[DECISION]</span>
+                                <span>A-12 injected personalized hook based on recent funding news.</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:12</span>
+                                <span class="text-[#ffb4ab]">[WARN]</span>
+                                <span>Bounce detected: invalid domain format.</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-[#3f3f5a]">14:23:15</span>
+                                <span class="text-[#4ae176]">[SUCCESS]</span>
+                                <span class="text-white">Positive reply received from VP Sales at TechCorp.</span>
+                            </div>
+                            <div class="flex gap-2 opacity-50">
+                                <span class="text-[#3f3f5a]">14:23:16</span>
+                                <span class="text-[#c0c1ff] animate-pulse">_</span>
+                                <span>Awaiting next event...</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 4: ACTIVITY LOG (from system_activity_orchestration/code.html) -->
+    <div id="page-activity" class="page hidden">
+        <div class="flex-1 flex flex-col min-h-screen">
+            <!-- TopAppBar -->
+            <header class="flex justify-between items-center h-16 px-6 w-full max-w-[calc(100%)] bg-[#0f0f1a] border-b border-[#2e2e48] shadow-none sticky top-0 z-40">
+                <div class="flex items-center text-lg font-bold text-white tracking-tight font-['Inter'] antialiased">
+                    <span class="md:hidden mr-4 material-symbols-outlined">menu</span>
+                    System Activity
+                </div>
+                <div class="flex-1 max-w-md mx-6 hidden md:block">
+                    <div class="relative w-full h-9 bg-[#1a1a2e] rounded-lg border border-[#2e2e48] flex items-center px-3 focus-within:border-[#6366f1] transition-colors">
+                        <span class="material-symbols-outlined text-slate-400 text-sm mr-2" data-icon="search">search</span>
+                        <input class="bg-transparent border-none outline-none text-body-sm text-white w-full placeholder-slate-500" placeholder="Search logs, agents..." type="text"/>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="text-slate-400 hover:bg-[#1a1a2e] hover:text-white p-2 rounded-lg transition-all duration-200 active:scale-95 flex items-center justify-center">
+                        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                    </button>
+                    <button class="text-slate-400 hover:bg-[#1a1a2e] hover:text-white p-2 rounded-lg transition-all duration-200 active:scale-95 flex items-center justify-center">
+                        <span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+                    </button>
+                    <button class="hidden md:flex px-4 py-1.5 bg-[#6366f1] text-white rounded-lg font-body-sm font-medium hover:bg-opacity-90 active:scale-95 transition-all items-center gap-2">
+                        <span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                        New Campaign
+                    </button>
+                    <div class="w-8 h-8 rounded-full bg-[#34343d] overflow-hidden border border-[#2e2e48]">
+                        <img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9CA00rgeINBdv155oD4L6hhgqoX0Pou_QelTyDx98R4cZ0tRIeEfNCPsIRMRpbpxqkZ72yV8vpanfTIsM4HarKDI8vXg6xt1aXLX-KIFarF6boH6OS4bnMfmS7KVriDMSE23IvaQLstoxagoVrYPJ-O3geQVgC1So_hzJ7jQrozl-Ks_W9Rek3V6JGkU6ukDUERZgzg3arSGFjNH7WK9laxnNJsLK54pMSjw8u3kXjAVyM5ahdkFKk-3bJhR_MShBsF-6cYthJBg"/>
+                    </div>
+                </div>
+            </header>
+            <!-- Dashboard Content -->
+            <main class="flex-1 p-gutter overflow-y-auto w-full max-w-container-max mx-auto">
+                <!-- Pulse Header -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+                    <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden group hover:border-[#3f3f5a] transition-colors">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="font-label-caps text-slate-400 uppercase tracking-wider">Total Active Agents</span>
+                            <span class="material-symbols-outlined text-[#6366f1] text-sm">precision_manufacturing</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 z-10">
+                            <span class="font-mono-stats text-4xl text-white">12</span>
+                            <span class="font-body-sm text-[#4ae176]">+2 from yesterday</span>
+                        </div>
+                        <!-- Decorative background element -->
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-[#6366f1] opacity-5 rounded-full blur-xl group-hover:opacity-10 transition-opacity"></div>
+                    </div>
+                    <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden hover:border-[#3f3f5a] transition-colors">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="font-label-caps text-slate-400 uppercase tracking-wider">Tasks Processed (24h)</span>
+                            <span class="material-symbols-outlined text-[#6366f1] text-sm">checklist</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 z-10">
+                            <span class="font-mono-stats text-4xl text-white">4,892</span>
+                            <span class="font-body-sm text-slate-400">~204/hr</span>
+                        </div>
+                    </div>
+                    <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col justify-between h-28 relative overflow-hidden hover:border-[#3f3f5a] transition-colors">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="font-label-caps text-slate-400 uppercase tracking-wider">System Health</span>
+                            <div class="flex items-center gap-1 bg-[#4ae176]/10 px-2 py-0.5 rounded text-[#4ae176] font-label-caps text-[10px]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#4ae176]"></span>
+                                ONLINE
+                            </div>
+                        </div>
+                        <div class="flex items-baseline gap-2 z-10">
+                            <span class="font-mono-stats text-4xl text-white">99.9%</span>
+                            <span class="font-body-sm text-slate-400">Uptime</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Layout Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+                    <!-- Center Column: Agents & Activity (Col span 2) -->
+                    <div class="lg:col-span-2 flex flex-col gap-gutter">
+                        <!-- Agent Grid -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl overflow-hidden">
+                            <div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50">
+                                <h2 class="font-label-caps text-slate-300 uppercase">Agent Roster</h2>
+                                <button class="text-xs font-body-sm text-[#6366f1] hover:text-white transition-colors">View All Threads</button>
+                            </div>
+                            <div class="p-md grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Agent Card 1 -->
+                                <div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 hover:border-[#6366f1]/50 transition-colors cursor-default">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-6 h-6 rounded bg-[#8083ff]/20 border border-[#8083ff]/30 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-[14px] text-[#8083ff]">memory</span>
+                                            </div>
+                                            <div>
+                                                <div class="font-body-sm font-semibold text-white leading-tight">Agent Alpha</div>
+                                                <div class="font-label-caps text-[9px] text-slate-500">ID: AG-001</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-[#8083ff]/10 border border-[#8083ff]/20 text-[#8083ff] font-label-caps text-[10px] px-1.5 py-0.5 rounded flex items-center gap-1">
+                                            <span class="w-1 h-1 rounded-full bg-[#8083ff] animate-pulse"></span>
+                                            Researching
+                                        </div>
+                                    </div>
+                                    <div class="font-body-sm text-slate-400 text-xs mb-3 truncate">
+                                        Target: Enterprise SaaS Leads (Q3)
+                                    </div>
+                                    <div class="flex items-end justify-between gap-4">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between text-[10px] text-slate-500 mb-1">
+                                                <span>CPU Load</span>
+                                                <span>78%</span>
+                                            </div>
+                                            <div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+                                                <div class="bg-[#6366f1] h-full w-[78%] rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Agent Card 2 -->
+                                <div class="bg-[#0f0f1a] border border-[#2e2e48] rounded-lg p-3 hover:border-[#6366f1]/50 transition-colors cursor-default">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-6 h-6 rounded bg-[#4ae176]/10 border border-[#4ae176]/30 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-[14px] text-[#4ae176]">edit_document</span>
+                                            </div>
+                                            <div>
+                                                <div class="font-body-sm font-semibold text-white leading-tight">Agent Beta</div>
+                                                <div class="font-label-caps text-[9px] text-slate-500">ID: AG-009</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-[#4ae176]/10 border border-[#4ae176]/20 text-[#4ae176] font-label-caps text-[10px] px-1.5 py-0.5 rounded flex items-center gap-1">
+                                            Drafting
+                                        </div>
+                                    </div>
+                                    <div class="font-body-sm text-slate-400 text-xs mb-3 truncate">
+                                        Personalizing intro for Acme Corp
+                                    </div>
+                                    <div class="flex items-end justify-between gap-4">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between text-[10px] text-slate-500 mb-1">
+                                                <span>CPU Load</span>
+                                                <span>42%</span>
+                                            </div>
+                                            <div class="w-full bg-[#2e2e48] h-1 rounded-full overflow-hidden">
+                                                <div class="bg-[#4ae176] h-full w-[42%] rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Visualizer -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl overflow-hidden flex-1 min-h-[300px] flex flex-col">
+                            <div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50">
+                                <h2 class="font-label-caps text-slate-300 uppercase">Parallel Pipeline Flow</h2>
+                            </div>
+                            <div class="p-md flex-1 relative flex items-center justify-center text-slate-500 font-body-sm border-2 border-dashed border-[#2e2e48] rounded-lg m-4">
+                                [Parallel Processing Network Graph Placeholder]
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Feed & Metrics -->
+                    <div class="flex flex-col gap-gutter">
+                        <!-- Live Feed -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl flex flex-col h-[400px]">
+                            <div class="border-b border-[#2e2e48] p-md flex justify-between items-center bg-[#13131b]/50 shrink-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6366f1] animate-pulse"></span>
+                                    <h2 class="font-label-caps text-slate-300 uppercase">Live Log</h2>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-500 text-sm">filter_list</span>
+                            </div>
+                            <div class="flex-1 p-3 overflow-y-auto font-mono text-[11px] leading-relaxed text-slate-400 space-y-2 bg-[#0f0f1a] m-2 rounded border border-[#2e2e48]">
+                                <div class="flex gap-2">
+                                    <span class="text-slate-600 shrink-0">[10:42:01]</span>
+                                    <span class="text-[#6366f1]">Agent-04</span>
+                                    <span class="text-slate-300">completed research for David Chen (Stripe)</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="text-slate-600 shrink-0">[10:42:05]</span>
+                                    <span class="text-[#4ae176]">Agent-09</span>
+                                    <span class="text-slate-300">writing personalized intro for Acme Corp. Confidence: 92%</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="text-slate-600 shrink-0">[10:42:12]</span>
+                                    <span class="text-[#ffb783]">Agent-02</span>
+                                    <span class="text-slate-300">analyzing sentiment for Reply #402. Detected: 'Interested'</span>
+                                </div>
+                                <div class="flex gap-2 opacity-70">
+                                    <span class="text-slate-600 shrink-0">[10:41:50]</span>
+                                    <span class="text-[#6366f1]">Agent-01</span>
+                                    <span class="text-slate-300">queued 50 new LinkedIn profiles for scraping.</span>
+                                </div>
+                                <div class="flex gap-2 opacity-50">
+                                    <span class="text-slate-600 shrink-0">[10:41:15]</span>
+                                    <span class="text-[#ffb4ab]">System</span>
+                                    <span class="text-slate-300">API rate limit warning (Provider A). Backing off 2000ms.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Metrics Sidebar -->
+                        <div class="bg-[#1a1a2e] border border-[#2e2e48] rounded-xl p-md flex flex-col gap-4">
+                            <h2 class="font-label-caps text-slate-300 uppercase mb-2">Resource Utilization</h2>
+                            <div>
+                                <div class="flex justify-between font-label-caps text-[10px] text-slate-400 mb-1">
+                                    <span>API Requests (Daily)</span>
+                                    <span>8.2k / 10k</span>
+                                </div>
+                                <div class="w-full bg-[#0f0f1a] border border-[#2e2e48] h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#8083ff] h-full w-[82%] rounded-full"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-label-caps text-[10px] text-slate-400 mb-1">
+                                    <span>Memory Load</span>
+                                    <span>64%</span>
+                                </div>
+                                <div class="w-full bg-[#0f0f1a] border border-[#2e2e48] h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#ffb783] h-full w-[64%] rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-t border-[#2e2e48]">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-body-sm text-slate-300">Pending Queue</span>
+                                    <span class="font-mono-stats text-lg text-white">142</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Page Switching Logic -->
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll(`[data-page="${id}"]`).forEach(t => t.classList.add('active'));
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

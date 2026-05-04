@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  cold-email:
+    build: .
+    env_file: .env
+    volumes:
+      - ./memory:/app/memory
+      - ./logs:/app/logs
+    environment:
+      - DRY_RUN=true
+
+  api:
+    build: .
+    command: uvicorn api.server:app --host 0.0.0.0 --port 4000 --reload
+    ports:
+      - "4000:4000"
+    env_file: .env
+    volumes:
+      - ./memory:/app/memory
+      - ./frontend:/app/frontend
